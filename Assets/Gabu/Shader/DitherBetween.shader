@@ -37,6 +37,12 @@
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
             };
+                        
+            fixed4 frag (v2f i) : SV_Target
+            {
+                float2 viewPortPos = i.screenPos.xy / i.screenPos.w; //wで除算し、スクリーンでの投影位置を取得
+                float2 screenPosInPixel = viewPortPos.xy * _ScreenParams.xy; //0～1の線形からピクセルに変換
+            }
 
             struct v2f
             {
@@ -51,6 +57,8 @@
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.vertex = UnityObjectToClipPos(v.vertex); //頂点をMVP行列変換
+                o.screenPos = ComputeScreenPos(o.vertex); //クリップ座標からスクリーン座標を計算
                 o.screenUV = v.vertex.xy;
 
                 float3 A = _PointA.xyz;
