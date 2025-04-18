@@ -17,7 +17,7 @@ MonoBehaviour:
   Icon: {fileID: 2800000, guid: c3cbe0ef4d277d04f9850fa31b86a72f, type: 3}
   AtkType: 0
   Filters: 0000000064000000
-  EndTime: 25
+  EndTime: 30
   CT: 0
   SPUse: 0
   BranchInfos:
@@ -43,6 +43,8 @@ MonoBehaviour:
     Times: {x: 7, y: 25}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 1
     FutureTime: 0
   - EditDisp: '[1]BNum:1Time:(7, 25)MP:0Future{Num:2Time:0}'
@@ -50,6 +52,8 @@ MonoBehaviour:
     Times: {x: 7, y: 25}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 2
     FutureTime: 0
   - EditDisp: '[2]BNum:2Time:(7, 25)MP:0Future{Num:3Time:0}'
@@ -57,6 +61,8 @@ MonoBehaviour:
     Times: {x: 7, y: 25}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 3
     FutureTime: 0
   - EditDisp: '[3]BNum:3Time:(7, 25)MP:0Future{Num:4Time:0}'
@@ -64,6 +70,8 @@ MonoBehaviour:
     Times: {x: 7, y: 25}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 4
     FutureTime: 0
   - EditDisp: '[4]BNum:4Time:(10, 25)MP:0Future{Num:0Time:0}'
@@ -71,34 +79,44 @@ MonoBehaviour:
     Times: {x: 10, y: 25}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 0
     FutureTime: 0
-  - EditDisp: '[5]BNum:0,1,2,3,4Time:(25, 99)MP:120Future{Num:10Time:0}'
+  - EditDisp: '[5]BNum:0,1,2,3,4Time:(26, 30)MP:120Future{Num:10Time:0}'
     BranchNums: 0000000001000000020000000300000004000000
-    Times: {x: 25, y: 99}
+    Times: {x: 26, y: 30}
     Ifs: 010000000a000000
     UseMP: 120
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 10
     FutureTime: 0
-  - EditDisp: '[6]BNum:0,1,2,3,4Time:(25, 99)MP:0Future{Num:20Time:0}'
+  - EditDisp: '[6]BNum:0,1,2,3,4Time:(26, 30)MP:0Future{Num:20Time:0}'
     BranchNums: 0000000001000000020000000300000004000000
-    Times: {x: 25, y: 99}
+    Times: {x: 26, y: 30}
     Ifs: 010000000b000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 20
     FutureTime: 0
-  - EditDisp: '[7]BNum:10,21,22Time:(15, 50)MP:0Future{Num:2Time:0}'
+  - EditDisp: '[7]BNum:10,21,22Time:(15, 30)MP:0Future{Num:2Time:0}'
     BranchNums: 0a0000001500000016000000
-    Times: {x: 15, y: 50}
+    Times: {x: 15, y: 30}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 2
     FutureTime: 0
-  - EditDisp: '[8]BNum:20Time:(0, 99)MP:0Future{Num:21Time:0}'
+  - EditDisp: '[8]BNum:20Time:(0, 30)MP:0Future{Num:21Time:0}'
     BranchNums: 14000000
-    Times: {x: 0, y: 99}
+    Times: {x: 0, y: 30}
     Ifs: 0a000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 21
     FutureTime: 0
   Fixeds:
@@ -263,6 +281,10 @@ MonoBehaviour:
       SPAdd: 1
       BufSets: []
     Adds: []
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 0
   - Obj: {fileID: 5905403385281065886, guid: 2f6a91d571a1bde4c92ea6e936118a4f, type: 3}
     Fires:
@@ -290,6 +312,10 @@ MonoBehaviour:
       SPAdd: 4
       BufSets: []
     Adds: []
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 0
   Moves:
   - BranchNum: 20

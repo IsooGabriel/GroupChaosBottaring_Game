@@ -168,6 +168,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
             stream.SendNext(DeathStar);
             stream.SendNext(Win);
             stream.SendNext(End);
+            stream.SendNext(EStaMults);
         }
         else
         {
@@ -178,6 +179,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
             DeathStar = (int)stream.ReceiveNext();
             Win = (bool)stream.ReceiveNext();
             End = (bool)stream.ReceiveNext();
+            EStaMults = (float)stream.ReceiveNext();
         }
     }
 }

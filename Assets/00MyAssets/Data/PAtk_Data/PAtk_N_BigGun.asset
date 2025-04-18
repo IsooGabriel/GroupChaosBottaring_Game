@@ -30,90 +30,114 @@ MonoBehaviour:
   - BID: 11
     Name: "\u72D9\u5C04\u6483"
   Branchs:
-  - EditDisp: '[0]BNum:0Time:(25, 999)MP:0Future{Num:1Time:0}'
+  - EditDisp: '[0]BNum:0Time:(25, 140)MP:0Future{Num:1Time:0}'
     BranchNums: 00000000
-    Times: {x: 25, y: 999}
+    Times: {x: 25, y: 140}
     Ifs: 
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 1
     FutureTime: 0
-  - EditDisp: '[1]BNum:1Time:(0, 50)MP:0Future{Num:10Time:0}'
+  - EditDisp: '[1]BNum:1Time:(0, 120)MP:0Future{Num:10Time:0}'
     BranchNums: 01000000
-    Times: {x: 0, y: 50}
+    Times: {x: 0, y: 120}
     Ifs: 01000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 10
     FutureTime: 0
-  - EditDisp: '[2]BNum:1Time:(45, 50)MP:0Future{Num:1Time:0}'
+  - EditDisp: '[2]BNum:1Time:(121, 140)MP:0Future{Num:1Time:0}'
     BranchNums: 01000000
-    Times: {x: 45, y: 50}
+    Times: {x: 121, y: 140}
     Ifs: 
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 1
     FutureTime: 0
-  - EditDisp: '[3]BNum:11Time:(25, 50)MP:0Future{Num:10Time:0}'
-    BranchNums: 0b000000
-    Times: {x: 25, y: 50}
-    Ifs: 01000000
-    UseMP: 0
-    FutureNum: 10
-    FutureTime: 0
-  - EditDisp: '[4]BNum:11Time:(40, 50)MP:0Future{Num:1Time:0}'
-    BranchNums: 0b000000
-    Times: {x: 40, y: 50}
-    Ifs: 03000000
-    UseMP: 0
-    FutureNum: 1
-    FutureTime: 0
-  - EditDisp: '[5]BNum:10Time:(0, 20)MP:0Future{Num:11Time:5}'
-    BranchNums: 0a000000
-    Times: {x: 0, y: 20}
-    Ifs: 02000000
-    UseMP: 0
-    FutureNum: 11
-    FutureTime: 5
-  - EditDisp: '[6]BNum:10Time:(21, 40)MP:0Future{Num:11Time:4}'
-    BranchNums: 0a000000
-    Times: {x: 21, y: 40}
-    Ifs: 02000000
-    UseMP: 0
-    FutureNum: 11
-    FutureTime: 4
-  - EditDisp: '[7]BNum:10Time:(41, 60)MP:0Future{Num:11Time:3}'
-    BranchNums: 0a000000
-    Times: {x: 41, y: 60}
-    Ifs: 02000000
-    UseMP: 0
-    FutureNum: 11
-    FutureTime: 3
-  - EditDisp: '[8]BNum:10Time:(61, 80)MP:0Future{Num:11Time:2}'
-    BranchNums: 0a000000
-    Times: {x: 61, y: 80}
-    Ifs: 02000000
-    UseMP: 0
-    FutureNum: 11
-    FutureTime: 2
-  - EditDisp: '[9]BNum:10Time:(81, 100)MP:0Future{Num:11Time:1}'
-    BranchNums: 0a000000
-    Times: {x: 81, y: 100}
-    Ifs: 02000000
-    UseMP: 0
-    FutureNum: 11
-    FutureTime: 1
-  - EditDisp: '[10]BNum:10Time:(101, 140)MP:0Future{Num:11Time:0}'
-    BranchNums: 0a000000
-    Times: {x: 101, y: 140}
-    Ifs: 
-    UseMP: 0
-    FutureNum: 11
-    FutureTime: 0
-  - EditDisp: '[11]BNum:1,10,11Time:(0, 140)MP:0Future{Num:1Time:141}'
+  - EditDisp: '[3]BNum:1,10,11Time:(0, 140)MP:0Future{Num:1Time:141}'
     BranchNums: 010000000a0000000b000000
     Times: {x: 0, y: 140}
     Ifs: 15000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 1
     FutureNum: 1
     FutureTime: 141
+  - EditDisp: '[4]BNum:11Time:(25, 40)MP:0Future{Num:10Time:0}'
+    BranchNums: 0b000000
+    Times: {x: 25, y: 40}
+    Ifs: 01000000
+    UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
+    FutureNum: 10
+    FutureTime: 0
+  - EditDisp: '[5]BNum:11Time:(41, 140)MP:0Future{Num:1Time:0}'
+    BranchNums: 0b000000
+    Times: {x: 41, y: 140}
+    Ifs: 03000000
+    UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
+    FutureNum: 1
+    FutureTime: 0
+  - EditDisp: '[6]BNum:10Time:(0, 20)MP:0Future{Num:11Time:5}'
+    BranchNums: 0a000000
+    Times: {x: 0, y: 20}
+    Ifs: 02000000
+    UseMP: 0
+    BranchColor: {r: 1, g: 0, b: 1, a: 1}
+    HideUI: 0
+    FutureNum: 11
+    FutureTime: 5
+  - EditDisp: '[7]BNum:10Time:(21, 40)MP:0Future{Num:11Time:4}'
+    BranchNums: 0a000000
+    Times: {x: 21, y: 40}
+    Ifs: 02000000
+    UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 1, a: 1}
+    HideUI: 0
+    FutureNum: 11
+    FutureTime: 4
+  - EditDisp: '[8]BNum:10Time:(41, 60)MP:0Future{Num:11Time:3}'
+    BranchNums: 0a000000
+    Times: {x: 41, y: 60}
+    Ifs: 02000000
+    UseMP: 0
+    BranchColor: {r: 0, g: 1, b: 1, a: 1}
+    HideUI: 0
+    FutureNum: 11
+    FutureTime: 3
+  - EditDisp: '[9]BNum:10Time:(61, 80)MP:0Future{Num:11Time:2}'
+    BranchNums: 0a000000
+    Times: {x: 61, y: 80}
+    Ifs: 02000000
+    UseMP: 0
+    BranchColor: {r: 0, g: 1, b: 0, a: 1}
+    HideUI: 0
+    FutureNum: 11
+    FutureTime: 2
+  - EditDisp: '[10]BNum:10Time:(81, 100)MP:0Future{Num:11Time:1}'
+    BranchNums: 0a000000
+    Times: {x: 81, y: 100}
+    Ifs: 02000000
+    UseMP: 0
+    BranchColor: {r: 1, g: 1, b: 0, a: 1}
+    HideUI: 0
+    FutureNum: 11
+    FutureTime: 1
+  - EditDisp: '[11]BNum:10Time:(101, 140)MP:0Future{Num:11Time:0}'
+    BranchNums: 0a000000
+    Times: {x: 101, y: 140}
+    Ifs: 
+    UseMP: 0
+    BranchColor: {r: 1, g: 0, b: 0, a: 1}
+    HideUI: 0
+    FutureNum: 11
+    FutureTime: 0
   Fixeds:
   - EditDisp: '[0]BNum:0Time:(0, 999)'
     BranchNum: 0
@@ -181,6 +205,10 @@ MonoBehaviour:
       SPAdd: 4
       BufSets: []
     Adds: []
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 0
   Moves:
   - BranchNum: 0

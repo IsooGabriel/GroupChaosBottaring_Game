@@ -316,6 +316,7 @@ MonoBehaviour:
     Volume: 300
     Pitch: 50
   DeathEffect: {fileID: 0}
+  StreamTime: 0.1
   PLValues: {fileID: 0}
   WepValues: {fileID: 0}
   MHP: 4326050

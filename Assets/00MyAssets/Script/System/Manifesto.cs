@@ -100,6 +100,8 @@ static public class Manifesto
         [Tooltip(Const_Ttp_Times)] public Vector2Int Times;
         [Tooltip("追加条件")] public Enum_AtkIf[] Ifs;
         [Tooltip("MP消費")] public float UseMP;
+        [Tooltip("UI分岐色上書き,a>0")] public Color BranchColor;
+        [Tooltip("UI非表示")] public bool HideUI;
         [Tooltip("分岐先ID")] public int FutureNum;
         [Tooltip("分岐後攻撃時間(フレーム)")] public int FutureTime;
     }

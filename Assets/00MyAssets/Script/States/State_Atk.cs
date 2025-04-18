@@ -234,7 +234,9 @@ public class State_Atk
     }
     static public void Shots(State_Base USta, Class_Atk_Shot_Base Shot,int BranchID,Vector2 Speed,Vector3 Pos,Vector3 Rot)
     {
-        var ShotIns = PhotonNetwork.Instantiate(Shot.Obj.name, Pos, Quaternion.Euler(Rot));
+        GameObject ShotIns;
+        if(USta.Player)ShotIns = PhotonNetwork.Instantiate(Shot.Obj.name, Pos, Quaternion.Euler(Rot));
+        else ShotIns = PhotonNetwork.InstantiateRoomObject(Shot.Obj.name, Pos, Quaternion.Euler(Rot));
         var ShotRig = ShotIns.GetComponent<Rigidbody>();
         ShotRig.linearVelocity += ShotIns.transform.forward * V2_Rand_Float(Speed) * 0.01f;
         var SObj = ShotIns.GetComponent<Shot_Obj>();

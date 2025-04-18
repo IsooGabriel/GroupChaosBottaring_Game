@@ -50,6 +50,10 @@ MonoBehaviour:
         TransRots: []
     Hits: []
     Adds: []
+    Summon:
+      LimitTime: 60
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 0
   Moves: []
   States: []

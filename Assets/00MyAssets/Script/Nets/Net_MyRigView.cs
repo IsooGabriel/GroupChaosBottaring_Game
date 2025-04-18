@@ -6,6 +6,7 @@ public class Net_MyRigView : MonoBehaviourPun
     const float MinTimer = 0.05f;
 
     [SerializeField] Rigidbody Rig;
+    [SerializeField, Tooltip("重力影響%")] float GravityPer;
     [SerializeField, Tooltip("同期頻度(秒)")] float StreamTime = 0.1f;
 
     float Timer = 0;
@@ -35,7 +36,7 @@ public class Net_MyRigView : MonoBehaviourPun
 
             // velocity から予測位置を計算
             Vector3 predictedTarget = targetPosition + receivedVelocity * timeSinceLastUpdate;
-            if(Rig.useGravity)predictedTarget += 0.5f * Physics.gravity * timeSinceLastUpdate * timeSinceLastUpdate;
+            predictedTarget += 0.5f * Physics.gravity * timeSinceLastUpdate * timeSinceLastUpdate * GravityPer * 0.01f;
             // 補間
             currentPosition = Vector3.Lerp(currentPosition, predictedTarget, Time.fixedDeltaTime * 10f);
             currentRotation = Quaternion.Lerp(currentRotation, targetRotation, Time.fixedDeltaTime * 10f);
@@ -66,16 +67,6 @@ public class Net_MyRigView : MonoBehaviourPun
         receivedVelocity = Vel;
         targetRotation = Rot;
 
-        // 補間元と先を一致させる（ズレが大きいとき）
-        /*
-        if ((currentPosition - targetPosition).sqrMagnitude > 5f)
-        {
-            currentPosition = targetPosition;
-            currentRotation = targetRotation;
-        }
-        */
-
-        // 経過時間リセット（ここが重要！）
         timeSinceLastUpdate = 0f;
     }
 }

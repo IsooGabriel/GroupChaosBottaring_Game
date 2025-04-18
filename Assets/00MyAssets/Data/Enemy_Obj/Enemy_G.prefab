@@ -190,6 +190,7 @@ MonoBehaviour:
     Volume: 100
     Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
+  StreamTime: 0.25
   PLValues: {fileID: 0}
   WepValues: {fileID: 0}
   MHP: 200000

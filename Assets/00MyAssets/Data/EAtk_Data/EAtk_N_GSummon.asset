@@ -45,7 +45,7 @@ MonoBehaviour:
     Hits: []
     Adds: []
     Summon:
-      LimitTime: 20
+      LimitTime: 40
       HPMulPer: 50
       AtkMulPer: 25
     HitCT: 0

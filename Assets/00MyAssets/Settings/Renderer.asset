@@ -61,11 +61,11 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_DefaultStencilState:
     overrideStencilState: 0
-    stencilReference: 1
+    stencilReference: 0
     stencilCompareFunction: 3
-    passOperation: 2
-    failOperation: 0
-    zFailOperation: 0
+    passOperation: 5
+    failOperation: 7
+    zFailOperation: 2
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 2
   m_DepthPrimingMode: 0

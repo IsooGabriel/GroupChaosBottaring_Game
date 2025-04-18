@@ -106,7 +106,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3346181219688463273
 GameObject:
@@ -395,8 +395,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.8
+      scalar: 2
+      minScalar: 1.6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5095,7 +5095,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8022984532373786305
 MonoBehaviour:
@@ -5110,4 +5110,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rig: {fileID: 8710933915686848093}
+  GravityPer: 100
   StreamTime: 0.5

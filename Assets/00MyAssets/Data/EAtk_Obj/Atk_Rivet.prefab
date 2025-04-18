@@ -5040,7 +5040,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rig: {fileID: 8710933915686848093}
-  StreamTime: 0.5
+  GravityPer: 0
+  StreamTime: 0.25
 --- !u!1001 &4119661004236258200
 PrefabInstance:
   m_ObjectHideFlags: 0

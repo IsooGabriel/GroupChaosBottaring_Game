@@ -39,6 +39,8 @@ MonoBehaviour:
     Times: {x: 30, y: 45}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 1
     FutureTime: 0
   - EditDisp: '[1]BNum:1Time:(30, 45)MP:0Future{Num:2Time:0}'
@@ -46,6 +48,8 @@ MonoBehaviour:
     Times: {x: 30, y: 45}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 2
     FutureTime: 0
   - EditDisp: '[2]BNum:2Time:(30, 45)MP:0Future{Num:3Time:0}'
@@ -53,6 +57,8 @@ MonoBehaviour:
     Times: {x: 30, y: 45}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 3
     FutureTime: 0
   - EditDisp: '[3]BNum:3Time:(30, 45)MP:0Future{Num:4Time:0}'
@@ -60,6 +66,8 @@ MonoBehaviour:
     Times: {x: 30, y: 45}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 4
     FutureTime: 0
   - EditDisp: '[4]BNum:4Time:(30, 45)MP:0Future{Num:0Time:0}'
@@ -67,13 +75,17 @@ MonoBehaviour:
     Times: {x: 30, y: 45}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 0
     FutureTime: 0
-  - EditDisp: '[5]BNum:0,1,2,3,4Time:(45, 60)MP:250Future{Num:10Time:0}'
+  - EditDisp: '[5]BNum:0,1,2,3,4Time:(46, 60)MP:250Future{Num:10Time:0}'
     BranchNums: 0000000001000000020000000300000004000000
-    Times: {x: 45, y: 60}
+    Times: {x: 46, y: 60}
     Ifs: 01000000
     UseMP: 250
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 10
     FutureTime: 0
   - EditDisp: '[6]BNum:10Time:(25, 60)MP:0Future{Num:0Time:0}'
@@ -81,6 +93,8 @@ MonoBehaviour:
     Times: {x: 25, y: 60}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 0
     FutureTime: 0
   Fixeds:
@@ -233,6 +247,10 @@ MonoBehaviour:
       SPAdd: 1.5
       BufSets: []
     Adds: []
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 0
   Moves: []
   States: []

@@ -78,11 +78,29 @@ public class Enemy_WaveSpawne : MonoBehaviourPun,IPunObservable
     {
         if (stream.IsWriting)
         {
+            stream.SendNext(Wave);
             stream.SendNext(Clear);
+            List<int> EnemyViewIDs = new List<int>();
+            for (int i = 0; i < Enemys.Count; i++)
+            {
+                if (Enemys[i] == null) continue;
+                EnemyViewIDs.Add(Enemys[i].photonView.ViewID);
+            }
+            stream.SendNext(EnemyViewIDs.ToArray());
         }
         else
         {
+            Wave = (int)stream.ReceiveNext();
             Clear = (bool)stream.ReceiveNext();
+            Enemys.Clear();
+            var EnemyViewIDs = (int[])stream.ReceiveNext();
+            for(int i = 0; i < EnemyViewIDs.Length; i++)
+            {
+                var PView = PhotonNetwork.GetPhotonView(EnemyViewIDs[i]);
+                if (PView == null) continue;
+                var ESta = PView.GetComponent<State_Base>();
+                if (ESta != null) Enemys.Add(ESta);
+            }
         }
     }
 }

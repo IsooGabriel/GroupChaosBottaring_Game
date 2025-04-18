@@ -215,7 +215,7 @@ MonoBehaviour:
   HitRem: 0
   DelAddShots: []
   SepParticles:
-  - {fileID: 0}
+  - {fileID: 8158220902062068289}
   SepTrails: []
   Times: 0
   SPAddCT: 0
@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rig: {fileID: 8710933915686848093}
+  GravityPer: 0
   StreamTime: 0.5
 --- !u!1 &7299236262306394481
 GameObject:
@@ -357,7 +358,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7299236262306394481}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.2
   simulationSpeed: 2
   stopAction: 0
   cullingMode: 0

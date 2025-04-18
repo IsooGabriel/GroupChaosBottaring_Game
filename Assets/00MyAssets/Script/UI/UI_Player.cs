@@ -22,6 +22,7 @@ public class UI_Player : UI_State
     [SerializeField] Image AtkTimeBar;
     [SerializeField] TextMeshProUGUI AtkNameTx;
     [SerializeField] TextMeshProUGUI AtkBranchTx;
+    [SerializeField] RectTransform BranchTrans;
     [SerializeField] List<Slider> BranchSliders;
 
     [SerializeField] Image TargetImage;
@@ -146,10 +147,60 @@ public class UI_Player : UI_State
             for (int i = 0; i < Mathf.Max(BranchIndexs.Count, BranchSliders.Count); i++)
             {
                 if (BranchSliders.Count <= i) BranchSliders.Add(Instantiate(BranchSliders[0], BranchSliders[0].transform.parent));
+
                 var SinUI = BranchSliders[i];
                 if (i < BranchIndexs.Count)
                 {
-                    SinUI.value = AtkD.Branchs[BranchIndexs[i]].Times.x / Mathf.Max(1f, AtkD.EndTime);
+                    var BranchInfo = AtkD.Branchs[BranchIndexs[i]];
+                    if (BranchInfo.HideUI)
+                    {
+                        SinUI.gameObject.SetActive(false);
+                        continue;
+                    }
+                    SinUI.value = ((BranchInfo.Times.x + BranchInfo.Times.y) / 2f) / Mathf.Max(1f, AtkD.EndTime);
+                    var TRectSize = SinUI.targetGraphic.rectTransform.sizeDelta;
+                    TRectSize.x = BranchTrans.sizeDelta.x * ((BranchInfo.Times.y - BranchInfo.Times.x + 1f) / Mathf.Max(1f, AtkD.EndTime));
+                    SinUI.targetGraphic.rectTransform.sizeDelta = TRectSize;
+                    Color SliderCol = Color.black;
+                    if (BranchInfo.BranchColor.a > 0) SliderCol = BranchInfo.BranchColor;
+                    else if (BranchInfo.Ifs.Length > 0)
+                    {
+                        SliderCol = Color.green;
+                        for (int j = 0; j < BranchInfo.Ifs.Length; j++)
+                        {
+                            if (BranchInfo.Ifs[j] == Enum_AtkIf.攻撃単入力)
+                            {
+                                SliderCol = Color.yellow;
+                                break;
+                            }
+                            if (BranchInfo.Ifs[j] == Enum_AtkIf.攻撃長入力)
+                            {
+                                SliderCol = Color.magenta;
+                                break;
+                            }
+                            if (BranchInfo.Ifs[j] == Enum_AtkIf.空中)
+                            {
+                                SliderCol = Color.cyan;
+                                break;
+                            }
+                            if (BranchInfo.Ifs[j] == Enum_AtkIf.攻撃未入力 || BranchInfo.Ifs[j] == Enum_AtkIf.攻撃未長入力)
+                            {
+                                SliderCol = Color.white;
+                                break;
+                            }
+                            if (BranchInfo.Ifs[j] == Enum_AtkIf.MP無し)
+                            {
+                                SliderCol = new Color(1f,0.8f,0.8f);
+                                break;
+                            }
+                        }
+
+                    }
+
+                    SliderCol.a = SinUI.targetGraphic.color.a;
+                    SinUI.targetGraphic.color = SliderCol;
+
+
                 }
                 SinUI.gameObject.SetActive(i < BranchIndexs.Count);
             }

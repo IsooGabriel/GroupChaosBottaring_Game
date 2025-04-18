@@ -33,27 +33,35 @@ MonoBehaviour:
     Times: {x: 240, y: 250}
     Ifs: 
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 1
     FutureTime: 0
-  - EditDisp: '[1]BNum:1Time:(240, 250)MP:0Future{Num:1Time:0}'
-    BranchNums: 01000000
-    Times: {x: 240, y: 250}
-    Ifs: 
-    UseMP: 0
-    FutureNum: 1
-    FutureTime: 0
-  - EditDisp: '[2]BNum:1Time:(10, 250)MP:0Future{Num:2Time:0}'
+  - EditDisp: '[1]BNum:1Time:(10, 250)MP:0Future{Num:2Time:0}'
     BranchNums: 01000000
     Times: {x: 10, y: 250}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 2
+    FutureTime: 0
+  - EditDisp: '[2]BNum:1Time:(240, 250)MP:0Future{Num:1Time:0}'
+    BranchNums: 01000000
+    Times: {x: 240, y: 250}
+    Ifs: 
+    UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
+    FutureNum: 1
     FutureTime: 0
   - EditDisp: '[3]BNum:2Time:(45, 250)MP:0Future{Num:0Time:30}'
     BranchNums: 02000000
     Times: {x: 45, y: 250}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 0
     FutureTime: 30
   Fixeds:
@@ -106,6 +114,10 @@ MonoBehaviour:
       BranchNum: 2
       AddShots:
       - {fileID: 11400000, guid: b38e72f403bec6042b57a61d3ff23a9c, type: 2}
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 0
   Moves: []
   States: []

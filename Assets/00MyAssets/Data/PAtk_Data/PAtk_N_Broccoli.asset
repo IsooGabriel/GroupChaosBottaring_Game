@@ -34,46 +34,58 @@ MonoBehaviour:
   - BID: 10
     Name: "\u91CD\u653B\u6483"
   Branchs:
-  - EditDisp: '[0]BNum:0Time:(20, 50)MP:0Future{Num:1Time:0}'
+  - EditDisp: '[0]BNum:0Time:(35, 50)MP:0Future{Num:1Time:0}'
     BranchNums: 00000000
-    Times: {x: 20, y: 50}
+    Times: {x: 35, y: 50}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 1
     FutureTime: 0
-  - EditDisp: '[1]BNum:1Time:(21, 50)MP:0Future{Num:2Time:0}'
+  - EditDisp: '[1]BNum:1Time:(33, 50)MP:0Future{Num:2Time:0}'
     BranchNums: 01000000
-    Times: {x: 21, y: 50}
+    Times: {x: 33, y: 50}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 2
     FutureTime: 0
-  - EditDisp: '[2]BNum:2Time:(23, 50)MP:0Future{Num:3Time:0}'
+  - EditDisp: '[2]BNum:2Time:(31, 50)MP:0Future{Num:3Time:0}'
     BranchNums: 02000000
-    Times: {x: 23, y: 50}
+    Times: {x: 31, y: 50}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 3
     FutureTime: 0
-  - EditDisp: '[3]BNum:3Time:(25, 50)MP:0Future{Num:4Time:0}'
+  - EditDisp: '[3]BNum:3Time:(29, 50)MP:0Future{Num:4Time:0}'
     BranchNums: 03000000
-    Times: {x: 25, y: 50}
+    Times: {x: 29, y: 50}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 4
     FutureTime: 0
-  - EditDisp: '[4]BNum:4Time:(25, 50)MP:0Future{Num:0Time:0}'
+  - EditDisp: '[4]BNum:4Time:(27, 50)MP:0Future{Num:0Time:0}'
     BranchNums: 04000000
-    Times: {x: 25, y: 50}
+    Times: {x: 27, y: 50}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 0
     FutureTime: 0
-  - EditDisp: '[5]BNum:0,1,2,3,4Time:(50, 70)MP:200Future{Num:10Time:0}'
+  - EditDisp: '[5]BNum:0,1,2,3,4Time:(51, 70)MP:200Future{Num:10Time:0}'
     BranchNums: 0000000001000000020000000300000004000000
-    Times: {x: 50, y: 70}
+    Times: {x: 51, y: 70}
     Ifs: 01000000
     UseMP: 200
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 10
     FutureTime: 0
   Fixeds:
@@ -248,6 +260,10 @@ MonoBehaviour:
       BranchNum: 10
       AddShots:
       - {fileID: 11400000, guid: 75804ec4aa09ac44e96ef243cf8f958c, type: 2}
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 0
   - Obj: {fileID: 5905403385281065886, guid: 3b8a242298aba1547a06a357d06f04e3, type: 3}
     Fires:
@@ -282,6 +298,10 @@ MonoBehaviour:
       BranchNum: 4
       AddShots:
       - {fileID: 11400000, guid: 75804ec4aa09ac44e96ef243cf8f958c, type: 2}
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 0
   Moves: []
   States: []

@@ -81,7 +81,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public Dictionary<int, int> LocalCTs = new Dictionary<int, int>();
     [System.NonSerialized] public GameObject BreakEffect = null;
     [System.NonSerialized] public bool LimitFlag = false;
-    float Timer = 0;
+    float STimer = 0;
 
     public int FMHP
     {
@@ -119,13 +119,24 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
     }
     #endregion
+    private void Awake()
+    {
+        HP = MHP;
+    }
     private void Start()
     {
         BTManager.StateList.Add(this);
         if (Player) BTManager.PlayerList.Add(this);
         if (Boss) BTManager.BossList.Add(this);
-        if (!photonView.IsMine) return;
-        if (Player)
+        if (CamTrans == null) CamTrans = transform;
+        if (Team != 0)
+        {
+            MHP = Mathf.RoundToInt(MHP * BTManager.EStaMults);
+            HPRegene = Mathf.RoundToInt(HPRegene * BTManager.EStaMults);
+            MBreak = Mathf.RoundToInt(MBreak * BTManager.EStaMults);
+        }
+
+        if (photonView.IsMine && Player)
         {
             MHP = Mathf.RoundToInt(MHP * (1f + PriSetGet.PassiveLVGet(Enum_Passive.HP増加) * 0.2f));
             HPRegene = Mathf.RoundToInt(HPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.自然再生) * 0.5f));
@@ -134,30 +145,38 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             SPRegene = Mathf.RoundToInt(SPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.SPブースト) * 0.2f));
             Atk = Mathf.RoundToInt(Atk * (1f + PriSetGet.PassiveLVGet(Enum_Passive.攻撃力増加) * 0.1f));
             Def = Mathf.RoundToInt(Def * (1f + PriSetGet.PassiveLVGet(Enum_Passive.防御力増加) * 0.25f));
-        }
-        if (Team != 0)
-        {
-            MHP = Mathf.RoundToInt(MHP * BTManager.EStaMults);
-            HPRegene = Mathf.RoundToInt(HPRegene * BTManager.EStaMults);
+            if (!PhotonNetwork.OfflineMode) Name = photonView.Owner.NickName;
         }
         HP = FMHP;
         MP = FMMP;
-        if (!PhotonNetwork.OfflineMode)
-        {
-            if (Player) Name = photonView.Owner.NickName;
-        }
-        if (CamTrans == null) CamTrans = transform;
     }
     void Update()
     {
-        return;
+        //return;
         if (PhotonNetwork.OfflineMode) return;
         if (!photonView.IsMine) return;
-        Timer -= Time.unscaledDeltaTime;
-        if (Timer <= 0)
+        STimer -= Time.unscaledDeltaTime;
+        if (STimer <= 0)
         {
-            Timer = Mathf.Max(0.05f, StreamTime);
-            photonView.RPC(nameof(RPC_Stream_Base), RpcTarget.Others, MHP);
+            STimer = Mathf.Max(0.05f, StreamTime);
+            photonView.RPC(nameof(RPC_Stream_Base), RpcTarget.Others, MHP,MMP,Atk,Def,MBreak,Name,Team,NoDamage,LimitFlag);
+            photonView.RPC(nameof(RPC_Stream_Value), RpcTarget.Others, HP,BreakV,BreakT);
+            photonView.RPC(nameof(RPC_Stream_Anim), RpcTarget.Others, Anim_MoveID,Anim_AtkID,Anim_AtkSpeed,Anim_OtherID);
+            var Buf_ID = new List<int>();
+            var Buf_Index = new List<int>();
+            var Buf_Time = new List<int>();
+            var Buf_Pow = new List<int>();
+            var Buf_TimeMax = new List<int>();
+            for (int i = 0; i < Bufs.Count; i++)
+            {
+                Buf_ID.Add(Bufs[i].ID);
+                Buf_Index.Add(Bufs[i].Index);
+                Buf_Time.Add(Bufs[i].Time);
+                Buf_Pow.Add(Bufs[i].Pow);
+                Buf_TimeMax.Add(Bufs[i].TimeMax);
+            }
+            photonView.RPC(nameof(RPC_Stream_Buf), RpcTarget.Others,
+                Buf_ID.ToArray(),Buf_Index.ToArray(),Buf_Time.ToArray(),Buf_Pow.ToArray(),Buf_TimeMax.ToArray());
         }
     }
     private void FixedUpdate()
@@ -396,7 +415,6 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             if (Val <= 0) return;
         }
     }
-
     void AddInfoChange()
     {
         if (PLValues == null) return;
@@ -589,7 +607,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     #endregion
     #region RPCメソッド
     [PunRPC]
-    void RPC_Damage(Vector3 HitPos, int Val,float Break)
+    void RPC_Damage(Vector3 HitPos, int Val,float Break,PhotonMessageInfo PhInfo)
     {
         if (Val > 0 && NoDamage) return;
         if (HP <= 0) return;
@@ -614,9 +632,18 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             if (Shilds > 0)
             {
                 int Vald = Val;
+                int ShValue = Mathf.Min(Val, Shilds);
                 Val = Mathf.Max(0, Val - Shilds);
                 if (photonView.IsMine)
                 {
+                    Color ShildCol = Color.blue;
+                    switch (Team)
+                    {
+                        case 0:
+                            ShildCol = Color.cyan;
+                            break;
+                    }
+                    DamageObj.DamageSet(HitPos, Mathf.Abs(ShValue), ShildCol);
                     BufPowRem(Enum_Bufs.シールド, Vald);
                     BTManager.SEPlay(DB.ShildHitSE, HitPos, true);
                 }
@@ -636,7 +663,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         var InsHitEffect = Instantiate(HitEffect, HitPos, Quaternion.identity);
         if (Val >= 0)BTManager.SEPlay(DamageSE, HitPos,true);
 
-        if (!photonView.IsMine) return;
+        if (!photonView.IsMine && PhInfo.Sender != PhotonNetwork.LocalPlayer) return;
         BreakV+=Break;
         if (Player)
         {
@@ -657,9 +684,9 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (DeathEffect != null) Instantiate(DeathEffect, PosGet(), Quaternion.identity);
     }
     [PunRPC]
-    void RPC_BufSet(int BufID, int Index, int Sets, int Time, int Pow, int TMax, int PMax)
+    void RPC_BufSet(int BufID, int Index, int Sets, int Time, int Pow, int TMax, int PMax, PhotonMessageInfo PhInfo)
     {
-        if (!photonView.IsMine) return;
+        if (!photonView.IsMine && PhInfo.Sender != PhotonNetwork.LocalPlayer) return;
         Class_Sta_BufInfo Bufi = null;
         for (int i = 0; i < Bufs.Count; i++)
         {
@@ -709,7 +736,6 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             Bufs.Remove(Bufi);
         }
     }
-
     [PunRPC]
     void RPC_Stream_Base(int Str_MHP,int Str_MMP, int Str_Atk, int Str_Def, int Str_MBreak, string Str_Name, int Str_Team, bool Str_NoDamage, bool Str_LimitFlag)
     {
@@ -758,7 +784,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     #endregion
     void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info)
     {
-        //return;
+        return;
         if (stream.IsWriting)
         {
             stream.SendNext(MHP);

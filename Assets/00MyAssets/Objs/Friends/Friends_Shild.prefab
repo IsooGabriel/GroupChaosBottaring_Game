@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 8851893093483233145}
   - component: {fileID: 6544934709698599726}
   - component: {fileID: 1925398843158275794}
-  - component: {fileID: 680773896555929259}
-  - component: {fileID: 6760652969913205840}
   - component: {fileID: 2049415607464157120}
   - component: {fileID: 6486544341704297044}
+  - component: {fileID: -6949498581613428027}
   m_Layer: 7
   m_Name: Friends_Shild
   m_TagString: Untagged
@@ -88,44 +87,10 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 680773896555929259}
-  - {fileID: 6760652969913205840}
   - {fileID: 2049415607464157120}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &680773896555929259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3138562507945577928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 1
-  m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &6760652969913205840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3138562507945577928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 0
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 0
 --- !u!114 &2049415607464157120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,16 +121,23 @@ MonoBehaviour:
     Volume: 200
     Pitch: 125
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
+  StreamTime: 0.25
+  PLValues: {fileID: 0}
+  WepValues: {fileID: 0}
   MHP: 2000000
   HPRegene: 0
   MMP: 0
   MPRegene: 0
   SPRegene: 0
+  MBreak: 0
+  BreakTime: 0
   Atk: 50000
   Def: 150000
   HP: 0
   MP: 0
   SP: 0
+  BreakV: 0
+  BreakT: 0
   Ground: 0
   DeathTime: 0
   Target: {fileID: 0}
@@ -183,6 +155,7 @@ MonoBehaviour:
   NoDash: 0
   Aiming: 0
   NGravity: 0
+  NoDamage: 0
   Anim_MoveID: 0
   Anim_AtkID: 0
   Anim_AtkSpeed: 0
@@ -208,6 +181,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6949498581613428027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138562507945577928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f055b58b252384e4ea041e265f1b78be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rig: {fileID: 6544934709698599726}
+  StreamTime: 1
 --- !u!1 &4350126102488607792
 GameObject:
   m_ObjectHideFlags: 0

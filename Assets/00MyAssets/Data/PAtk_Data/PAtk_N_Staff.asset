@@ -49,6 +49,8 @@ MonoBehaviour:
     Times: {x: 40, y: 70}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 1
     FutureTime: 0
   - EditDisp: '[1]BNum:1Time:(45, 70)MP:0Future{Num:2Time:0}'
@@ -56,6 +58,8 @@ MonoBehaviour:
     Times: {x: 45, y: 70}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 2
     FutureTime: 0
   - EditDisp: '[2]BNum:2Time:(50, 70)MP:0Future{Num:3Time:0}'
@@ -63,6 +67,8 @@ MonoBehaviour:
     Times: {x: 50, y: 70}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 3
     FutureTime: 0
   - EditDisp: '[3]BNum:3Time:(55, 70)MP:0Future{Num:4Time:0}'
@@ -70,20 +76,26 @@ MonoBehaviour:
     Times: {x: 55, y: 70}
     Ifs: 00000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 4
     FutureTime: 0
-  - EditDisp: '[4]BNum:4Time:(50, 35)MP:0Future{Num:0Time:0}'
+  - EditDisp: '[4]BNum:4Time:(50, 70)MP:0Future{Num:1Time:0}'
     BranchNums: 04000000
-    Times: {x: 50, y: 35}
+    Times: {x: 50, y: 70}
     Ifs: 00000000
     UseMP: 0
-    FutureNum: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
+    FutureNum: 1
     FutureTime: 0
-  - EditDisp: '[5]BNum:0,1,2,3,4Time:(70, 150)MP:120Future{Num:10Time:0}'
+  - EditDisp: '[5]BNum:0,1,2,3,4Time:(71, 150)MP:120Future{Num:10Time:0}'
     BranchNums: 0000000001000000020000000300000004000000
-    Times: {x: 70, y: 150}
+    Times: {x: 71, y: 150}
     Ifs: 01000000
     UseMP: 120
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 10
     FutureTime: 0
   - EditDisp: '[6]BNum:10Time:(145, 150)MP:0Future{Num:10Time:140}'
@@ -91,6 +103,8 @@ MonoBehaviour:
     Times: {x: 145, y: 150}
     Ifs: 
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 10
     FutureTime: 140
   - EditDisp: '[7]BNum:10Time:(10, 35)MP:0Future{Num:11Time:0}'
@@ -98,6 +112,8 @@ MonoBehaviour:
     Times: {x: 10, y: 35}
     Ifs: 02000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 1, a: 1}
+    HideUI: 0
     FutureNum: 11
     FutureTime: 0
   - EditDisp: '[8]BNum:10Time:(36, 55)MP:0Future{Num:12Time:0}'
@@ -105,6 +121,8 @@ MonoBehaviour:
     Times: {x: 36, y: 55}
     Ifs: 02000000
     UseMP: 0
+    BranchColor: {r: 0, g: 1, b: 1, a: 1}
+    HideUI: 0
     FutureNum: 12
     FutureTime: 0
   - EditDisp: '[9]BNum:10Time:(56, 80)MP:0Future{Num:13Time:0}'
@@ -112,6 +130,8 @@ MonoBehaviour:
     Times: {x: 56, y: 80}
     Ifs: 02000000
     UseMP: 0
+    BranchColor: {r: 0, g: 1, b: 0, a: 1}
+    HideUI: 0
     FutureNum: 13
     FutureTime: 0
   - EditDisp: '[10]BNum:10Time:(81, 139)MP:0Future{Num:14Time:0}'
@@ -119,6 +139,8 @@ MonoBehaviour:
     Times: {x: 81, y: 139}
     Ifs: 02000000
     UseMP: 0
+    BranchColor: {r: 1, g: 1, b: 0, a: 1}
+    HideUI: 0
     FutureNum: 14
     FutureTime: 0
   - EditDisp: '[11]BNum:10Time:(140, 150)MP:0Future{Num:15Time:0}'
@@ -126,6 +148,8 @@ MonoBehaviour:
     Times: {x: 140, y: 150}
     Ifs: 02000000
     UseMP: 0
+    BranchColor: {r: 1, g: 0, b: 0, a: 1}
+    HideUI: 0
     FutureNum: 15
     FutureTime: 0
   - EditDisp: '[12]BNum:11,12,13,14,15Time:(50, 150)MP:0Future{Num:10Time:0}'
@@ -133,6 +157,8 @@ MonoBehaviour:
     Times: {x: 50, y: 150}
     Ifs: 01000000
     UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
     FutureNum: 10
     FutureTime: 0
   Fixeds:
@@ -337,6 +363,10 @@ MonoBehaviour:
       SPAdd: 2
       BufSets: []
     Adds: []
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 0
   - Obj: {fileID: 5905403385281065886, guid: 0bd53bad7d7d2984b85b7415530b4ecd, type: 3}
     Fires:
@@ -367,6 +397,10 @@ MonoBehaviour:
       SPAdd: 2
       BufSets: []
     Adds: []
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 15
   - Obj: {fileID: 5905403385281065886, guid: a79bcc0c5dd767f4aba492ca2475c09e, type: 3}
     Fires:
@@ -400,6 +434,10 @@ MonoBehaviour:
       SPAdd: 2
       BufSets: []
     Adds: []
+    Summon:
+      LimitTime: 0
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 60
   Moves: []
   States: []

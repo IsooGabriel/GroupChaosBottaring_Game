@@ -903,8 +903,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6333645087819871649}
   - {fileID: 9200445234557483889}
+  - {fileID: 6333645087819871649}
   - {fileID: 5610923892624574374}
   - {fileID: 1537314452713907085}
   - {fileID: 1740451749544537317}
@@ -1820,6 +1820,7 @@ MonoBehaviour:
     Volume: 200
     Pitch: 65
   DeathEffect: {fileID: 0}
+  StreamTime: 0
   PLValues: {fileID: 4857566199455060444}
   WepValues: {fileID: 851651429656136078}
   MHP: 500000
@@ -1910,6 +1911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rig: {fileID: 2850786741804989515}
+  GravityPer: 0
   StreamTime: 0
 --- !u!1 &3677545289257640091
 GameObject:
@@ -8751,6 +8753,7 @@ MonoBehaviour:
   AtkTimeBar: {fileID: 2440975627204355142}
   AtkNameTx: {fileID: 5596921383616848572}
   AtkBranchTx: {fileID: 6667847582505877083}
+  BranchTrans: {fileID: 2422933775050982616}
   BranchSliders:
   - {fileID: 7390546819393729224}
   TargetImage: {fileID: 7526552786467977055}

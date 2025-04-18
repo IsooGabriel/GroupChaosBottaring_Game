@@ -182,7 +182,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rig: {fileID: 8710933915686848093}
-  StreamTime: 0.5
+  GravityPer: 100
+  StreamTime: 0.1
 --- !u!1 &7693662301762538480
 GameObject:
   m_ObjectHideFlags: 0
