@@ -9155,9 +9155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f06c29a3c0c8164996a179a6c48ef26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _material: {fileID: 2100000, guid: a71ce7920ffc8294db6795f0c00cc4ce, type: 2}
+  _material: {fileID: 2100000, guid: db151102ee62bf840bae8dc3f56f2f2c, type: 2}
   _target: {fileID: 172557899540485128}
-  _valueName: _TargetPosition
+  _cameraPositionValue: Point A
+  _targetPositionValue: Point B
 --- !u!1 &6613477205513754119
 GameObject:
   m_ObjectHideFlags: 0

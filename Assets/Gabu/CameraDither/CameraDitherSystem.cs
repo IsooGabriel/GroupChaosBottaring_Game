@@ -7,7 +7,9 @@ public class CameraDitherSystem : MonoBehaviour
     [SerializeField]
     private Transform _target;
     [SerializeField]
-    private string _valueName = "_TargetPosition";
+    private string _cameraPositionValue = "Point A";
+    [SerializeField]
+    private string _targetPositionValue = "Point B";
 
     private void Start()
     {
@@ -25,6 +27,7 @@ public class CameraDitherSystem : MonoBehaviour
     void LateUpdate()
     {
         Debug.Log($"やってるよ");
-        _material.SetVector(_valueName, _target.position);
+        _material.SetVector(_cameraPositionValue, transform.position);
+        _material.SetVector(_targetPositionValue, _target.position);
     }
 }
