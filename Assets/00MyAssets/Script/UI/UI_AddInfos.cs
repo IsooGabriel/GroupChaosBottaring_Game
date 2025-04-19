@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using static Statics;
 public class UI_AddInfos : MonoBehaviour
 {
     [SerializeField] State_Base Sta;
@@ -30,21 +31,25 @@ public class UI_AddInfos : MonoBehaviour
         var HPS = HitT / (float)Sta.PLValues.AddDams.Length;
         HitMax = Mathf.Max(HitMax, HPS);
 
-        DamTx.text = "TDam" + Sta.PLValues.AddDamTotal.ToString("F0");
-        DamTx.text += "\nDPS" + DPS.ToString("F0");
-        DamTx.text += "\nMax" + DamMax.ToString("F0");
-        for(int i = 0; i < Sta.PLValues.AddDams.Length; i++)
+        var DamStr = "TDam" + Sta.PLValues.AddDamTotal.ToString("F0");
+        DamStr += "\nDPS" + DPS.ToString("F0");
+        DamStr += "\nMax" + DamMax.ToString("F0");
+        if (DamTx.text != DamStr) DamTx.text = DamStr;
+        for (int i = 0; i < Sta.PLValues.AddDams.Length; i++)
         {
             if (DamValIm.Count <= i) DamValIm.Add(Instantiate(DamValIm[0], DamValIm[0].transform.parent));
-            DamValIm[i].fillAmount = Sta.PLValues.AddDams[i] / Mathf.Max(DamM,1f);
+            var DamPer = Float_Cuts(Sta.PLValues.AddDams[i] / Mathf.Max(DamM, 1f), 20);
+            if(DamValIm[i].fillAmount != DamPer) DamValIm[i].fillAmount = DamPer;
         }
-        HitTx.text = "THit" + Sta.PLValues.AddHitTotal;
-        HitTx.text += "\nHPS" + HPS.ToString("F1");
-        HitTx.text += "\nMax" + HitMax.ToString("F1");
+        var HitStr = "THit" + Sta.PLValues.AddHitTotal;
+        HitStr += "\nHPS" + HPS.ToString("F1");
+        HitStr += "\nMax" + HitMax.ToString("F1");
+        if(HitTx.text != HitStr) HitTx.text = HitStr;
         for (int i = 0; i < Sta.PLValues.AddDams.Length; i++)
         {
             if (HitValIm.Count <= i) HitValIm.Add(Instantiate(HitValIm[0], HitValIm[0].transform.parent));
-            HitValIm[i].fillAmount = Sta.PLValues.AddHits[i] / Mathf.Max(HitM,1f);
+            var HitPer = Float_Cuts(Sta.PLValues.AddHits[i] / Mathf.Max(HitM, 1f), 20);
+            if(HitValIm[i].fillAmount != HitPer) HitValIm[i].fillAmount = HitPer;
         }
     }
     public void AddReset()

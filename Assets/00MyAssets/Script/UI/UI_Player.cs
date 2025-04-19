@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using static DataBase;
 using static PlayerValue;
 using static Manifesto;
+using static Statics;
 using UnityEngine.SceneManagement;
 public class UI_Player : UI_State
 {
@@ -33,69 +34,6 @@ public class UI_Player : UI_State
     [SerializeField] BinaryUIAnimationo binaryUIAnimationo;
     [SerializeField] GameObject DebugUI;
 
-    #region 関数
-
-    /// <summary>
-    /// ステータスUIを更新するメソッド
-    /// </summary>
-    /// <param name="index"></param>
-    /// <param name="AtkD"></param>
-    /// <param name="AtkCTs"></param>
-    private void UpdateStatus(int index, Data_Atk AtkD, Class_Sta_AtkCT AtkCTs)
-    {
-        // AtkUIs[index] の UI 更新処理
-        for (int j = 0; j < AtkUIs[j].ChengedImages.Length; j++)
-        {
-            // すべての変更画像を非表示にする
-            AtkUIs[index].ChengedImages[j].SetActive(false);
-
-            // 名前の表示を更新（存在する場合）
-            if (AtkUIs[index].Name[j])
-            {
-                AtkUIs[index].Name[j].text = AtkD.Name;
-            }
-
-            // アイコンの表示を更新（存在する場合）
-            if (AtkUIs[index].Icon[j])
-            {
-                AtkUIs[index].Icon[j].texture = AtkD.Icon;
-            }
-
-            // クールタイムの画像更新（存在する場合）
-            if (AtkUIs[index].CTImage[j])
-            {
-                if (AtkCTs != null)
-                {
-                    // クールタイムの進行状況を計算して更新
-                    AtkUIs[index].CTImage[j].fillAmount = ((float)AtkCTs.CT / Mathf.Max(1, AtkCTs.CTMax));
-                }
-                else AtkUIs[index].CTImage[j].fillAmount = 0;
-            }
-
-            // チャージ量の画像更新（存在する場合）
-            if (AtkUIs[index].ChargeImage[j])
-            {
-                if (AtkD.SPUse > 0)
-                {
-                    // スタミナ（SP）の使用量に対する割合を計算して更新
-                    AtkUIs[index].ChargeImage[j].fillAmount = (float)Sta.SP / AtkD.SPUse;
-
-                    // スタミナ不足の場合、背景を灰色に変更
-                    //if (Sta.SP < AtkD.SPUse && AtkUIs[index].BackImage[j])
-                    //{
-                    //    AtkUIs[index].BackImage[j].color = Color.gray;
-                    //}
-                }
-                else AtkUIs[index].ChargeImage[j].fillAmount = 0;
-            }
-            AtkUIs[index].FullImage.SetActive(AtkD.SPUse > 0 && Sta.SP >= AtkD.SPUse);
-        }
-
-        // 変更を反映するための画像を表示
-        AtkUIs[index].ChengedImages[!PAtk.Backs ? 0 : 1].SetActive(true);
-    }
-
-    #endregion
     private void Start()
     {
         var DeathColor = DeathPanel.color;
@@ -109,27 +47,32 @@ public class UI_Player : UI_State
         var DeathColor = DeathPanel.color;
         if (Sta.HP <= 0) DeathColor.a += 0.01f * DeathAlphaSpeed;
         else DeathColor.a -= 0.05f * DeathAlphaSpeed;
+        DeathColor.a = Float_Cuts(DeathColor.a, 30);
         DeathColor.a = Mathf.Clamp(DeathColor.a, 0f, DeathAlphaMax);
-        DeathPanel.color = DeathColor;
+        if(DeathPanel.color != DeathColor) DeathPanel.color = DeathColor;
 
-        MPBar.fillAmount = Sta.MP / Mathf.Max(1, Sta.FMMP);
-        MPFill.color = Sta.LowMP ? Color.red : Color.white;
+        var MPPer = Float_Cuts(Sta.MP / Mathf.Max(1, Sta.FMMP),30);
+        if (MPBar.fillAmount != MPPer) MPBar.fillAmount = MPPer;
+        var MPCol = Sta.LowMP ? Color.red : Color.white;
+        if(MPFill.color!=MPCol)MPFill.color = MPCol;
 
         var TargetColor = PTarget.TargetOff ? Color.white : new Color(1, 0.5f, 0);
         TargetColor.a = TargetImage.color.a;
-        TargetImage.color = TargetColor;
+        if(TargetImage.color != TargetColor) TargetImage.color = TargetColor;
 
         if (Sta.AtkD != null)
         {
             var AtkD = Sta.AtkD;
-            AtkTimeBar.fillAmount = Sta.AtkTime / Mathf.Max(1f, AtkD.EndTime);
-            AtkNameTx.text = AtkD.Name;
-            AtkBranchTx.text = "";
+            var AtkTimePer = Float_Cuts(Sta.AtkTime / Mathf.Max(1f, AtkD.EndTime),120);
+            if(AtkTimeBar.fillAmount != AtkTimePer) AtkTimeBar.fillAmount = AtkTimePer;
+            if (AtkNameTx.text != AtkD.Name) AtkNameTx.text = AtkD.Name;
+            var BrachTx = "";
             if (AtkD.BranchInfos.Count > 0)
             {
                 var BranchGet = AtkD.BranchInfos.Find(x => x.BID == Sta.AtkBranch);
-                if(BranchGet!=null)AtkBranchTx.text = BranchGet.Name;
+                if(BranchGet!=null) BrachTx = BranchGet.Name;
             }
+            if (AtkBranchTx.text != BrachTx) AtkBranchTx.text = BrachTx;
             var BranchIndexs = new List<int>();
             if(AtkD.Branchs!=null)
                 for(int i = 0; i < AtkD.Branchs.Length; i++)
@@ -157,10 +100,11 @@ public class UI_Player : UI_State
                         SinUI.gameObject.SetActive(false);
                         continue;
                     }
-                    SinUI.value = ((BranchInfo.Times.x + BranchInfo.Times.y) / 2f) / Mathf.Max(1f, AtkD.EndTime);
+                    var SliderVal = Float_Cuts((BranchInfo.Times.x + BranchInfo.Times.y) / 2f / Mathf.Max(1f, AtkD.EndTime),120);
+                    if(SinUI.value != SliderVal) SinUI.value = SliderVal;
                     var TRectSize = SinUI.targetGraphic.rectTransform.sizeDelta;
-                    TRectSize.x = BranchTrans.sizeDelta.x * ((BranchInfo.Times.y - BranchInfo.Times.x + 1f) / Mathf.Max(1f, AtkD.EndTime));
-                    SinUI.targetGraphic.rectTransform.sizeDelta = TRectSize;
+                    TRectSize.x = Float_Cuts(BranchTrans.sizeDelta.x * ((BranchInfo.Times.y - BranchInfo.Times.x + 1f) / Mathf.Max(1f, AtkD.EndTime)),120);
+                    if(SinUI.targetGraphic.rectTransform.sizeDelta != TRectSize) SinUI.targetGraphic.rectTransform.sizeDelta = TRectSize;
                     Color SliderCol = Color.black;
                     if (BranchInfo.BranchColor.a > 0) SliderCol = BranchInfo.BranchColor;
                     else if (BranchInfo.Ifs.Length > 0)
@@ -199,21 +143,21 @@ public class UI_Player : UI_State
                     }
 
                     SliderCol.a = SinUI.targetGraphic.color.a;
-                    SinUI.targetGraphic.color = SliderCol;
+                    if(SinUI.targetGraphic.color != SliderCol) SinUI.targetGraphic.color = SliderCol;
 
 
                 }
-                SinUI.gameObject.SetActive(i < BranchIndexs.Count);
+                if(SinUI.gameObject.activeSelf != i < BranchIndexs.Count) SinUI.gameObject.SetActive(i < BranchIndexs.Count);
             }
         }
         else
         {
-            AtkTimeBar.fillAmount = 0;
-            AtkNameTx.text = "";
-            AtkBranchTx.text = "";
+            if(AtkTimeBar.fillAmount != 0) AtkTimeBar.fillAmount = 0;
+            if (AtkNameTx.text != "") AtkNameTx.text = "";
+            if (AtkBranchTx.text != "") AtkBranchTx.text = "";
             for(int i = 0; i < BranchSliders.Count; i++)
             {
-                BranchSliders[i].gameObject.SetActive(false);
+                if(BranchSliders[i].gameObject.activeSelf != false) BranchSliders[i].gameObject.SetActive(false);
             }
         }
         for (int i = 0; i < AtkUIs.Length; i++)
@@ -221,7 +165,8 @@ public class UI_Player : UI_State
             Data_Atk AtkD = null;
             bool Input = false;
             int Slot = i;
-            AtkFBTx.text = !PAtk.Backs ? "表" : "裏";
+            var FBStr = !PAtk.Backs ? "表" : "裏";
+            if(AtkFBTx.text != FBStr) AtkFBTx.text = FBStr;
             binaryUIAnimationo.UpdateAnimation(PAtk.Backs);
 
             var Atks = PriSetGet.AtkGet(PAtk.Backs);
@@ -245,21 +190,53 @@ public class UI_Player : UI_State
                     Slot = 10;
                     break;
             }
-
             foreach (var animation in AtkUIs[i].imageAnimation)
             {
                 // 入力があった場合にアニメーションをPressedに変更
                 animation.ChangeStatu(Input ? UISystem_Gabu.AnimatorStatu.Pressed : UISystem_Gabu.AnimatorStatu.Normal);
             }
-
-
             Sta.AtkCTs.TryGetValue(Slot, out var AtkCTs);
-            UpdateStatus(i, AtkD, AtkCTs);
+
+            for (int j = 0; j < AtkUIs[i].ChengedImages.Length; j++)
+            {
+                if (AtkUIs[i].Name[j] != null && AtkUIs[i].Name[j].text != AtkD.Name)
+                {
+                    AtkUIs[i].Name[j].text = AtkD.Name;
+                }
+                if (AtkUIs[i].Icon[j] != null && AtkUIs[i].Icon[j].texture != AtkD.Icon)
+                {
+                    AtkUIs[i].Icon[j].texture = AtkD.Icon;
+                }
+                if (AtkUIs[i].CTImage[j] != null)
+                {
+                    if (AtkCTs != null)
+                    {
+                        var CTPer = Float_Cuts((float)AtkCTs.CT / Mathf.Max(1, AtkCTs.CTMax), 30);
+                        if(AtkUIs[i].CTImage[j].fillAmount != CTPer) AtkUIs[i].CTImage[j].fillAmount = CTPer;
+                    }
+                    else if(AtkUIs[i].CTImage[j].fillAmount != 0) AtkUIs[i].CTImage[j].fillAmount = 0;
+                }
+                if (AtkUIs[i].ChargeImage[j] != null)
+                {
+                    if (AtkD.SPUse > 0)
+                    {
+                        var ChargePer = Float_Cuts((float)Sta.SP / AtkD.SPUse, 30);
+                        if(AtkUIs[i].ChargeImage[j].fillAmount != ChargePer) AtkUIs[i].ChargeImage[j].fillAmount = ChargePer;
+                    }
+                    else if(AtkUIs[i].ChargeImage[j].fillAmount != 0)AtkUIs[i].ChargeImage[j].fillAmount = 0;
+                }
+                var FBIf = (j == 0 ? true : false) == !PAtk.Backs;
+                if(AtkUIs[i].ChengedImages[j].activeSelf != FBIf) AtkUIs[i].ChengedImages[j].SetActive(FBIf);
+            }
+            var FullIf = AtkD.SPUse > 0 && Sta.SP >= AtkD.SPUse;
+            if(AtkUIs[i].FullImage.activeSelf != FullIf) AtkUIs[i].FullImage.SetActive(FullIf);
         }
-        StateInfoTx.text = "MHP:" + Sta.FMHP;
-        StateInfoTx.text += "\nMMP:" + Sta.FMMP;
-        StateInfoTx.text += "\nAtk:" + Sta.FAtk;
-        StateInfoTx.text += "\nDef:" + Sta.FDef;
-        DebugUI.SetActive(SceneManager.GetActiveScene().buildIndex == 1);
+        var StateStr = "MHP:" + Sta.FMHP;
+        StateStr += "\nMMP:" + Sta.FMMP;
+        StateStr += "\nAtk:" + Sta.FAtk;
+        StateStr += "\nDef:" + Sta.FDef;
+        if (StateInfoTx.text != StateStr) StateInfoTx.text = StateStr;
+        var DebugScene = SceneManager.GetActiveScene().buildIndex == 1;
+        if (DebugUI.activeSelf != DebugScene) DebugUI.SetActive(DebugScene);
     }
 }

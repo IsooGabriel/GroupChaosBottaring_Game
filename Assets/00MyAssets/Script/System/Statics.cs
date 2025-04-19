@@ -141,6 +141,11 @@ public class Statics : MonoBehaviour
     {
         return (TimeIf.x <= Times && Times <= TimeIf.y && (Times - TimeIf.x) % Mathf.Max(1, TimeIf.z) == 0);
     }
+    /// <summary>floatをn倍して四捨五入しnで割り値を調整する</summary>
+    static public float Float_Cuts(float F,int Cuts)
+    {
+        return Mathf.RoundToInt(F * Cuts) / (float)Cuts;
+    }
     static List<GameObject> Strages = new List<GameObject>();
     static public void ObjStrageParent(GameObject Target, string StrageName)
     {

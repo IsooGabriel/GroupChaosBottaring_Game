@@ -8,14 +8,17 @@ public class UI_EndResult : MonoBehaviour
     [SerializeField] GameObject[] EndUIs;
     [SerializeField] Image BackImage;
     [SerializeField] TextMeshProUGUI WinsTx;
-    [SerializeField] TextMeshProUGUI StartsTx;
+    [SerializeField] TextMeshProUGUI StarsTx;
     [SerializeField] TextMeshProUGUI TimeTx;
     [SerializeField] TextMeshProUGUI DeathTx;
 
     [SerializeField] List<Net_JoinPlayerUI> PlayerUIs;
     void Update()
     {
-        for (int i = 0; i < EndUIs.Length; i++) EndUIs[i].SetActive(BTManager.End);
+        for (int i = 0; i < EndUIs.Length; i++)
+        {
+            if (EndUIs[i].activeSelf != BTManager.End) EndUIs[i].SetActive(BTManager.End);
+        }
         if (!BTManager.End) return;
         UISet_Base();
         UISet_Player();
@@ -24,24 +27,30 @@ public class UI_EndResult : MonoBehaviour
     {
         Color BackCol;
         float Alpha = BackImage.color.a;
+        var WinStr = "";
         if (BTManager.Win)
         {
             BackCol = Color.gray;
-            WinsTx.text = "勝利";
+            WinStr = "勝利";
         }
         else
         {
             BackCol = Color.red;
-            WinsTx.text = "敗北";
+            WinStr = "敗北";
         }
         BackCol.a = Alpha;
-        BackImage.color = BackCol;
+        if(BackImage.color != BackCol) BackImage.color = BackCol;
+        if(WinsTx.text != WinStr) WinsTx.text = WinStr;
 
-        int CTime = (BTManager.TimeLimSec * 60) - BTManager.Time;
-        StartsTx.text = "";
-        for (int i = 0; i < 3; i++) StartsTx.text += i < BTManager.Star ? "★" : "☆";
-        TimeTx.text = (BTManager.Time / 3600).ToString("D2") + ":" + (BTManager.Time / 60 % 60).ToString("D2");
-        DeathTx.text = "Death:" + BTManager.DeathCount;
+        //int CTime = (BTManager.TimeLimSec * 60) - BTManager.Time;
+        var StarStr = "";
+        StarsTx.text = "";
+        for (int i = 0; i < 3; i++) StarStr += i < BTManager.Star ? "★" : "☆";
+        if (StarsTx.text != StarStr) StarsTx.text = StarStr;
+        var TimeStr = (BTManager.Time / 3600).ToString("D2") + ":" + (BTManager.Time / 60 % 60).ToString("D2");
+        if(TimeTx.text != TimeStr) TimeTx.text = TimeStr;
+        var DeathStr = "Death:" + BTManager.DeathCount;
+        if (DeathTx.text != DeathStr) DeathTx.text = DeathStr;
     }
     void UISet_Player()
     {
@@ -74,29 +83,37 @@ public class UI_EndResult : MonoBehaviour
             bool NDisp = false;
             if (Sta != null)
             {
-                SinUI.UISet(i+1,Sta.photonView.Owner,true);
-                SinUI.Bars[0].fillAmount = Sta.PLValues.AddDamTotal / Mathf.Max(1f, AddDamMax);
-                SinUI.ValTxs[0].text = Sta.PLValues.AddDamTotal.ToString("F0");
-                SinUI.Bars[1].fillAmount = Sta.PLValues.AddHitTotal / Mathf.Max(1f, AddHitMax);
-                SinUI.ValTxs[1].text = Sta.PLValues.AddHitTotal.ToString("F0");
-                SinUI.Bars[2].fillAmount = Sta.PLValues.AddHeal / Mathf.Max(1f, HealMax);
-                SinUI.ValTxs[2].text = Sta.PLValues.AddHeal.ToString("F0");
-                SinUI.Bars[3].fillAmount = Sta.PLValues.AddBuf / Mathf.Max(1f, BufMax);
-                SinUI.ValTxs[3].text = Sta.PLValues.AddBuf.ToString("F0");
-                SinUI.Bars[4].fillAmount = Sta.PLValues.AddDBuf / Mathf.Max(1f, DBufMax);
-                SinUI.ValTxs[4].text = Sta.PLValues.AddDBuf.ToString("F0");
-                SinUI.Bars[5].fillAmount = Sta.PLValues.E_AtkCount / Mathf.Max(1f, E_AtkMax);
-                SinUI.ValTxs[5].text = Sta.PLValues.E_AtkCount.ToString("F0");
-                SinUI.Bars[6].fillAmount = Sta.PLValues.ReceiveDam / Mathf.Max(1f, RecDamMax);
-                SinUI.ValTxs[6].text = Sta.PLValues.ReceiveDam.ToString("F0");
-                SinUI.Bars[7].fillAmount = Sta.PLValues.DeathCount / Mathf.Max(1f, DeathMax);
-                SinUI.ValTxs[7].text = Sta.PLValues.DeathCount.ToString("F0");
+                SinUI.UISet(i + 1, Sta.photonView.Owner, true);
+                float[] BarPer = new float[8];
+                string[] ValStr = new string[8];
+                BarPer[0] = Sta.PLValues.AddDamTotal / Mathf.Max(1f, AddDamMax);
+                ValStr[0] = Sta.PLValues.AddDamTotal.ToString("F0");
+                BarPer[1] = Sta.PLValues.AddHitTotal / Mathf.Max(1f, AddDamMax);
+                ValStr[1] = Sta.PLValues.AddHitTotal.ToString("F0");
+                BarPer[2] = Sta.PLValues.AddHeal / Mathf.Max(1f, AddDamMax);
+                ValStr[2] = Sta.PLValues.AddHeal.ToString("F0");
+                BarPer[3] = Sta.PLValues.AddBuf / Mathf.Max(1f, AddDamMax);
+                ValStr[3] = Sta.PLValues.AddBuf.ToString("F0");
+                BarPer[4] = Sta.PLValues.AddDBuf / Mathf.Max(1f, AddDamMax);
+                ValStr[4] = Sta.PLValues.AddDBuf.ToString("F0");
+                BarPer[5] = Sta.PLValues.E_AtkCount / Mathf.Max(1f, AddDamMax);
+                ValStr[5] = Sta.PLValues.E_AtkCount.ToString("F0");
+                BarPer[6] = Sta.PLValues.ReceiveDam / Mathf.Max(1f, AddDamMax);
+                ValStr[6] = Sta.PLValues.ReceiveDam.ToString("F0");
+                BarPer[7] = Sta.PLValues.DeathCount / Mathf.Max(1f, AddDamMax);
+                ValStr[7] = Sta.PLValues.DeathCount.ToString("F0");
+                for (int j = 0; j < 8; j++)
+                {
+                    if(SinUI.Bars[j].fillAmount != BarPer[j]) SinUI.Bars[0].fillAmount = BarPer[j];
+                    if(SinUI.ValTxs[j].text != ValStr[j]) SinUI.ValTxs[0].text = ValStr[j];
+                }
             }
             else
             {
                 NDisp = true;
             }
-            SinUI.gameObject.SetActive(i < BTManager.PlayerList.Count || !NDisp);
+            var DispIf = i < BTManager.PlayerList.Count || !NDisp;
+            if(SinUI.gameObject.activeSelf != DispIf)SinUI.gameObject.SetActive(DispIf);
 
         }
     }

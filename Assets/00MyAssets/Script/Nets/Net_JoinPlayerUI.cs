@@ -23,22 +23,26 @@ public class Net_JoinPlayerUI : MonoBehaviour
     public void UISet(int Index,Photon.Realtime.Player Player,bool Plays)
     {
         PlayerD = Player;
-        IndexTx.text = "[" + Index + "]";
-        NameTx.text = Player.NickName;
+        var IndexStr = "[" + Index + "]";
+        if(IndexTx.text != IndexStr) IndexTx.text = IndexStr;
+        if(NameTx.text != Player.NickName) NameTx.text = Player.NickName;
         if (!Plays)
         {
-            MasterOnlyUI.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.LocalPlayer != Player);
-            IsMasterUI.SetActive(Player.IsMasterClient);
+            var MasterDisp = PhotonNetwork.IsMasterClient && PhotonNetwork.LocalPlayer != Player;
+            if(MasterOnlyUI.activeSelf!=MasterDisp)MasterOnlyUI.SetActive(MasterDisp);
+            if(IsMasterUI.activeSelf != Player.IsMasterClient) IsMasterUI.SetActive(Player.IsMasterClient);
         }
 
         var CPro = Player.CustomProperties;
         var OKs = CPro.TryGetValue("OK", out var oOK) ? (bool)oOK : false;
-        OKsTx.text = OKs ? "OK" : "準備中";
-        OKsTx.color = OKs ? new Color(1, 0.5f, 0) : Color.white;
+        var OKStr = OKs ? "OK" : "準備中";
+        if(OKsTx.text != OKStr) OKsTx.text = OKStr;
+        var OKCol = OKs ? new Color(1, 0.5f, 0) : Color.white;
+        if(OKsTx.color != OKCol) OKsTx.color = OKCol;
         var CID = CPro.TryGetValue("Chara", out var oCID) ? (int)oCID : 0;
         var CharaData = DB.Charas[CID];
-        Chara_UI.Name.text = CharaData.Name;
-        Chara_UI.Icon.texture = CharaData.Icon;
+        if(Chara_UI.Name.text != CharaData.Name) Chara_UI.Name.text = CharaData.Name;
+        if(Chara_UI.Icon.texture != CharaData.Icon) Chara_UI.Icon.texture = CharaData.Icon;
         for (int i = 0; i < 4; i++)
         {
             #region 表攻撃
@@ -59,8 +63,8 @@ public class Net_JoinPlayerUI : MonoBehaviour
                     FAtkData = DB.E_Atks[FAtkID];
                     break;
             }
-            FSinUI.Name.text = FAtkData.Name;
-            FSinUI.Icon.texture = FAtkData.Icon;
+            if(FSinUI.Name.text != FAtkData.Name) FSinUI.Name.text = FAtkData.Name;
+            if(FSinUI.Icon.texture != FAtkData.Icon) FSinUI.Icon.texture = FAtkData.Icon;
             #endregion
             #region 裏攻撃
             if (BAtk_UIs.Count <= i) BAtk_UIs.Add(Instantiate(BAtk_UIs[0], BAtk_UIs[0].transform.parent));
@@ -80,16 +84,16 @@ public class Net_JoinPlayerUI : MonoBehaviour
                     BAtkData = DB.E_Atks[BAtkID];
                     break;
             }
-            BSinUI.Name.text = BAtkData.Name;
-            BSinUI.Icon.texture = BAtkData.Icon;
+            if(BSinUI.Name.text != BAtkData.Name) BSinUI.Name.text = BAtkData.Name;
+            if(BSinUI.Icon.texture != BAtkData.Icon) BSinUI.Icon.texture = BAtkData.Icon;
             #endregion
             #region パッシブ
             if (Passive_UIs.Count <= i) Passive_UIs.Add(Instantiate(Passive_UIs[0], Passive_UIs[0].transform.parent));
             var PSinUI = Passive_UIs[i];
             var PID = CPro.TryGetValue("Passive_" + i, out var oPassive) ? (int)oPassive : 0;
             var PassiveData = DB.Passives[PID];
-            PSinUI.Name.text = PassiveData.Name;
-            PSinUI.Icon.texture = PassiveData.Icon;
+            if(PSinUI.Name.text != PassiveData.Name) PSinUI.Name.text = PassiveData.Name;
+            if(PSinUI.Icon.texture != PassiveData.Icon) PSinUI.Icon.texture = PassiveData.Icon;
             #endregion
         }
     }
