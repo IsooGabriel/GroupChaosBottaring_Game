@@ -10,7 +10,7 @@ using static Calculation;
 
 public class State_Atk
 {
-    static public void Branch(State_Base USta, bool Enter, bool Stay)
+    static public void Branch(State_Base USta, bool Enter, bool Stay,int StayFl,bool Exit)
     {
         var AtkD = USta.AtkD;
         if (AtkD.Branchs == null) return;
@@ -33,13 +33,16 @@ public class State_Atk
                         if (!Enter) Check = false;
                         break;
                     case Enum_AtkIf.攻撃長入力:
-                        if (!Stay) Check = false;
+                        if (!Stay || StayFl <= BranchD.StayFlTime) Check = false;
                         break;
                     case Enum_AtkIf.攻撃未入力:
                         if (Enter || Stay) Check = false;
                         break;
                     case Enum_AtkIf.攻撃未長入力:
-                        if (Stay) Check = false;
+                        if (Stay && (StayFl >= BranchD.StayFlTime)) Check = false;
+                        break;
+                    case Enum_AtkIf.攻撃入力離:
+                        if (!Exit) Check = false;
                         break;
                     case Enum_AtkIf.地上:
                         if(!USta.Ground) Check = false;

@@ -99,6 +99,7 @@ static public class Manifesto
         [Tooltip("分岐ID条件いずれか")] public int[] BranchNums;
         [Tooltip(Const_Ttp_Times)] public Vector2Int Times;
         [Tooltip("追加条件")] public Enum_AtkIf[] Ifs;
+        [Tooltip("長押し時間f")] public int StayFlTime;
         [Tooltip("MP消費")] public float UseMP;
         [Tooltip("UI分岐色上書き,a>0")] public Color BranchColor;
         [Tooltip("UI非表示")] public bool HideUI;
@@ -679,6 +680,7 @@ static public class Manifesto
         攻撃長入力,
         攻撃未入力,
         攻撃未長入力,
+        攻撃入力離,
         地上 = 10,
         空中 = 11,
         MP有り = 20,

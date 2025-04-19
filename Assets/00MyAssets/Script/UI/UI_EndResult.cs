@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using static BattleManager;
 public class UI_EndResult : MonoBehaviour
 {
+    [SerializeField] GameObject[] EndUIs;
     [SerializeField] Image BackImage;
     [SerializeField] TextMeshProUGUI WinsTx;
     [SerializeField] TextMeshProUGUI StartsTx;
@@ -14,7 +15,7 @@ public class UI_EndResult : MonoBehaviour
     [SerializeField] List<Net_JoinPlayerUI> PlayerUIs;
     void Update()
     {
-        BackImage.gameObject.SetActive(BTManager.End);
+        for (int i = 0; i < EndUIs.Length; i++) EndUIs[i].SetActive(BTManager.End);
         if (!BTManager.End) return;
         UISet_Base();
         UISet_Player();

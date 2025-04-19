@@ -61,7 +61,8 @@ MonoBehaviour:
   - EditDisp: '[0]BNum:0,5,105,104,103Time:(15, 25)MP:0Future{Num:101Time:0}'
     BranchNums: 0000000005000000690000006800000067000000
     Times: {x: 15, y: 25}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -70,7 +71,8 @@ MonoBehaviour:
   - EditDisp: '[1]BNum:0,5,105,104,103Time:(26, 50)MP:0Future{Num:1Time:0}'
     BranchNums: 0000000005000000690000006800000067000000
     Times: {x: 26, y: 50}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 1, g: 1, b: 0, a: 1}
     HideUI: 0
@@ -79,7 +81,8 @@ MonoBehaviour:
   - EditDisp: '[2]BNum:0,5,105,104,103Time:(51, 60)MP:0Future{Num:101Time:0}'
     BranchNums: 0000000005000000690000006800000067000000
     Times: {x: 51, y: 60}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -88,7 +91,8 @@ MonoBehaviour:
   - EditDisp: '[3]BNum:1,101Time:(15, 30)MP:0Future{Num:102Time:0}'
     BranchNums: 0100000065000000
     Times: {x: 15, y: 30}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -97,7 +101,8 @@ MonoBehaviour:
   - EditDisp: '[4]BNum:1,101Time:(31, 50)MP:0Future{Num:2Time:0}'
     BranchNums: 0100000065000000
     Times: {x: 31, y: 50}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 1, g: 1, b: 0, a: 1}
     HideUI: 0
@@ -106,7 +111,8 @@ MonoBehaviour:
   - EditDisp: '[5]BNum:1,101Time:(51, 60)MP:0Future{Num:102Time:0}'
     BranchNums: 0100000065000000
     Times: {x: 51, y: 60}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -115,7 +121,8 @@ MonoBehaviour:
   - EditDisp: '[6]BNum:2,102Time:(15, 20)MP:0Future{Num:103Time:0}'
     BranchNums: 0200000066000000
     Times: {x: 15, y: 20}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -124,7 +131,8 @@ MonoBehaviour:
   - EditDisp: '[7]BNum:2,102Time:(20, 35)MP:0Future{Num:3Time:0}'
     BranchNums: 0200000066000000
     Times: {x: 20, y: 35}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 1, g: 1, b: 0, a: 1}
     HideUI: 0
@@ -133,7 +141,8 @@ MonoBehaviour:
   - EditDisp: '[8]BNum:2,102Time:(36, 60)MP:0Future{Num:103Time:0}'
     BranchNums: 0200000066000000
     Times: {x: 36, y: 60}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -142,7 +151,8 @@ MonoBehaviour:
   - EditDisp: '[9]BNum:3Time:(15, 25)MP:0Future{Num:104Time:0}'
     BranchNums: 03000000
     Times: {x: 15, y: 25}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -151,7 +161,8 @@ MonoBehaviour:
   - EditDisp: '[10]BNum:3Time:(26, 35)MP:0Future{Num:4Time:0}'
     BranchNums: 03000000
     Times: {x: 26, y: 35}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 1, g: 1, b: 0, a: 1}
     HideUI: 0
@@ -160,7 +171,8 @@ MonoBehaviour:
   - EditDisp: '[11]BNum:3Time:(36, 60)MP:0Future{Num:104Time:0}'
     BranchNums: 03000000
     Times: {x: 36, y: 60}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -169,7 +181,8 @@ MonoBehaviour:
   - EditDisp: '[12]BNum:4Time:(15, 55)MP:0Future{Num:105Time:0}'
     BranchNums: 04000000
     Times: {x: 15, y: 55}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -178,7 +191,8 @@ MonoBehaviour:
   - EditDisp: '[13]BNum:4Time:(56, 60)MP:0Future{Num:5Time:0}'
     BranchNums: 04000000
     Times: {x: 56, y: 60}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 1, g: 1, b: 0, a: 1}
     HideUI: 0
@@ -187,52 +201,58 @@ MonoBehaviour:
   - EditDisp: '[14]BNum:4Time:(61, 80)MP:0Future{Num:105Time:0}'
     BranchNums: 04000000
     Times: {x: 61, y: 80}
-    Ifs: 00000000
+    Ifs: 0400000003000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
     FutureNum: 105
     FutureTime: 0
-  - EditDisp: '[15]BNum:0,1,2,3,101,102,103,104,11,12,13,14Time:(60, 100)MP:120Future{Num:10Time:0}'
+  - EditDisp: '[15]BNum:0,1,2,3,101,102,103,104,11,12,13,14Time:(10, 100)MP:120Future{Num:10Time:0}'
     BranchNums: 00000000010000000200000003000000650000006600000067000000680000000b0000000c0000000d0000000e000000
-    Times: {x: 60, y: 100}
+    Times: {x: 10, y: 100}
     Ifs: 010000000a000000
+    StayFlTime: 15
     UseMP: 120
     BranchColor: {r: 0, g: 0, b: 0, a: 0}
     HideUI: 0
     FutureNum: 10
     FutureTime: 0
-  - EditDisp: '[16]BNum:0,1,2,3,101,102,103,104,11,12,13,14Time:(60, 100)MP:0Future{Num:20Time:0}'
+  - EditDisp: '[16]BNum:0,1,2,3,101,102,103,104,11,12,13,14Time:(10, 100)MP:0Future{Num:20Time:0}'
     BranchNums: 00000000010000000200000003000000650000006600000067000000680000000b0000000c0000000d0000000e000000
-    Times: {x: 60, y: 100}
+    Times: {x: 10, y: 100}
     Ifs: 010000000b000000
+    StayFlTime: 15
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 0, a: 0}
     HideUI: 0
     FutureNum: 20
     FutureTime: 0
-  - EditDisp: '[17]BNum:21,22Time:(25, 50)MP:0Future{Num:1Time:0}'
-    BranchNums: 1500000016000000
-    Times: {x: 25, y: 50}
-    Ifs: 00000000
-    UseMP: 0
-    BranchColor: {r: 0, g: 0, b: 0, a: 0}
-    HideUI: 0
-    FutureNum: 1
-    FutureTime: 0
-  - EditDisp: '[18]BNum:20Time:(0, 80)MP:0Future{Num:21Time:0}'
+  - EditDisp: '[17]BNum:20Time:(0, 100)MP:0Future{Num:21Time:0}'
     BranchNums: 14000000
-    Times: {x: 0, y: 80}
+    Times: {x: 0, y: 100}
     Ifs: 0a000000
+    StayFlTime: 0
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 0, a: 0}
     HideUI: 0
     FutureNum: 21
     FutureTime: 0
+  - EditDisp: '[18]BNum:21Time:(25, 100)MP:0Future{Num:1Time:0}'
+    BranchNums: 15000000
+    Times: {x: 25, y: 100}
+    Ifs: 00000000
+    StayFlTime: 0
+    UseMP: 0
+    BranchColor: {r: 0, g: 0, b: 0, a: 0}
+    HideUI: 0
+    FutureNum: 1
+    FutureTime: 0
   - EditDisp: '[19]BNum:10Time:(0, 30)MP:0Future{Num:11Time:0}'
     BranchNums: 0a000000
     Times: {x: 0, y: 30}
     Ifs: 02000000
+    StayFlTime: 0
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0
@@ -242,6 +262,7 @@ MonoBehaviour:
     BranchNums: 0a000000
     Times: {x: 31, y: 45}
     Ifs: 02000000
+    StayFlTime: 0
     UseMP: 0
     BranchColor: {r: 0, g: 1, b: 0, a: 1}
     HideUI: 0
@@ -251,6 +272,7 @@ MonoBehaviour:
     BranchNums: 0a000000
     Times: {x: 46, y: 55}
     Ifs: 02000000
+    StayFlTime: 0
     UseMP: 0
     BranchColor: {r: 1, g: 1, b: 0, a: 1}
     HideUI: 0
@@ -260,6 +282,7 @@ MonoBehaviour:
     BranchNums: 0a000000
     Times: {x: 56, y: 60}
     Ifs: 02000000
+    StayFlTime: 0
     UseMP: 0
     BranchColor: {r: 1, g: 0, b: 0, a: 1}
     HideUI: 0
@@ -269,6 +292,7 @@ MonoBehaviour:
     BranchNums: 0a000000
     Times: {x: 61, y: 70}
     Ifs: 02000000
+    StayFlTime: 0
     UseMP: 0
     BranchColor: {r: 1, g: 1, b: 0, a: 1}
     HideUI: 0
@@ -278,6 +302,7 @@ MonoBehaviour:
     BranchNums: 0a000000
     Times: {x: 71, y: 80}
     Ifs: 02000000
+    StayFlTime: 0
     UseMP: 0
     BranchColor: {r: 0, g: 1, b: 0, a: 1}
     HideUI: 0
@@ -287,6 +312,7 @@ MonoBehaviour:
     BranchNums: 0a000000
     Times: {x: 81, y: 100}
     Ifs: 02000000
+    StayFlTime: 0
     UseMP: 0
     BranchColor: {r: 0, g: 0, b: 1, a: 1}
     HideUI: 0

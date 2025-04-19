@@ -52,7 +52,7 @@ public class Enemy_Atk : MonoBehaviourPun
                 if (!OIf) break;
             }
             if(!OIf) continue;
-            Sta.AtkInput(AtkAI.AtkSlot, AtkAI.AtkD, true, true);
+            Sta.AtkInput(AtkAI.AtkSlot, AtkAI.AtkD, true, true,0,true);
         }
 
     }

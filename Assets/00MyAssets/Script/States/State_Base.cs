@@ -11,7 +11,7 @@ using static Calculation;
 using NaughtyAttributes;
 using System.IO;
 
-public class State_Base : MonoBehaviourPun,IPunObservable
+public class State_Base : MonoBehaviourPun
 {
     #region インスペクター変数
     [Foldout("設定")]public string Name;
@@ -464,7 +464,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             }
         }
     }
-    public void AtkInput(int UseAtkSlot, Data_Atk UseAtkD, bool Enter, bool Stay)
+    public void AtkInput(int UseAtkSlot, Data_Atk UseAtkD, bool Enter, bool Stay,int StayFl,bool Exit)
     {
         if (HP <= 0) return;
         if (BreakT > 0) return;
@@ -512,7 +512,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 Enter = false;
                 Stay = false;
             }
-            State_Atk.Branch(this, Enter, Stay);
+            State_Atk.Branch(this, Enter, Stay,StayFl,Exit);
         }
 
     }
@@ -782,92 +782,5 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     }
 
     #endregion
-    void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info)
-    {
-        return;
-        if (stream.IsWriting)
-        {
-            stream.SendNext(MHP);
-            stream.SendNext(MMP);
-            stream.SendNext(Atk);
-            stream.SendNext(Def);
-            stream.SendNext(MBreak);
-            stream.SendNext(Name);
-            stream.SendNext(Team);
-            stream.SendNext(NoDamage);
-            stream.SendNext(LimitFlag);
 
-            stream.SendNext(HP);
-            stream.SendNext(BreakV);
-            stream.SendNext(BreakT);
-
-            stream.SendNext(Anim_MoveID);
-            stream.SendNext(Anim_AtkID);
-            stream.SendNext(Anim_AtkSpeed);
-            stream.SendNext(Anim_OtherID);
-
-
-            var Buf_ID = new List<int>();
-            var Buf_Index = new List<int>();
-            var Buf_Time = new List<int>();
-            var Buf_Pow = new List<int>();
-            var Buf_TimeMax = new List<int>();
-            for (int i = 0; i < Bufs.Count; i++)
-            {
-                Buf_ID.Add(Bufs[i].ID);
-                Buf_Index.Add(Bufs[i].Index);
-                Buf_Time.Add(Bufs[i].Time);
-                Buf_Pow.Add(Bufs[i].Pow);
-                Buf_TimeMax.Add(Bufs[i].TimeMax);
-            }
-            stream.SendNext(Buf_ID.ToArray());
-            stream.SendNext(Buf_Index.ToArray());
-            stream.SendNext(Buf_Time.ToArray());
-            stream.SendNext(Buf_Pow.ToArray());
-            stream.SendNext(Buf_TimeMax.ToArray());
-
-
-        }
-        else
-        {
-            MHP = (int)stream.ReceiveNext();
-            MMP = (int)stream.ReceiveNext();
-            Atk = (int)stream.ReceiveNext();
-            Def = (int)stream.ReceiveNext();
-            MBreak = (int)stream.ReceiveNext();
-            Name = (string)stream.ReceiveNext();
-            Team = (int)stream.ReceiveNext();
-            NoDamage = (bool)stream.ReceiveNext();
-            LimitFlag = (bool)stream.ReceiveNext();
-
-            HP = (float)stream.ReceiveNext();
-            BreakV = (float)stream.ReceiveNext();
-            BreakT = (int)stream.ReceiveNext();
-
-            Anim_MoveID = (int)stream.ReceiveNext();
-            Anim_AtkID = (int)stream.ReceiveNext();
-            Anim_AtkSpeed = (float)stream.ReceiveNext();
-            Anim_OtherID = (int)stream.ReceiveNext();
-
-            var Buf_ID = (int[])stream.ReceiveNext();
-            var Buf_Index = (int[])stream.ReceiveNext();
-            var Buf_Time = (int[])stream.ReceiveNext();
-            var Buf_Pow = (int[])stream.ReceiveNext();
-            var Buf_TimeMax = (int[])stream.ReceiveNext();
-            Bufs.Clear();
-            for(int i = 0; i < Buf_ID.Length; i++)
-            {
-                Bufs.Add(new Class_Sta_BufInfo
-                {
-                    ID = Buf_ID[i],
-                    Index = Buf_Index[i],
-                    Time = Buf_Time[i],
-                    Pow = Buf_Pow[i],
-                    TimeMax = Buf_TimeMax[i],
-                });
-            }
-
-
-        }
-    }
 }

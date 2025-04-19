@@ -18,13 +18,25 @@ public class Player_Cont : MonoBehaviourPun
     public bool Target_Enter;
     public bool NAtk_Enter;
     public bool NAtk_Stay;
+    public int NAtk_StayFl;
+    public bool NAtk_Exit;
     public bool S1Atk_Enter;
     public bool S1Atk_Stay;
+    public int S1Atk_StayFl;
+    public bool S1Atk_Exit;
     public bool S2Atk_Enter;
     public bool S2Atk_Stay;
+    public int S2Atk_StayFl;
+    public bool S2Atk_Exit;
     public bool EAtk_Enter;
     public bool EAtk_Stay;
+    public int EAtk_StayFl;
+    public bool EAtk_Exit;
 
+    bool NAtk_ExitT = false;
+    bool S1Atk_ExitT = false;
+    bool S2Atk_ExitT = false;
+    bool EAtk_ExitT = false;
     private void Start()
     {
         if (!photonView.IsMine) return;
@@ -45,7 +57,12 @@ public class Player_Cont : MonoBehaviourPun
             case 1: AILV0(); break;
 
         }
-
+        ExitSet();
+    }
+    private void FixedUpdate()
+    {
+        if (!photonView.IsMine) return;
+        StayFlSet();
     }
     void ResetInput()
     {
@@ -62,6 +79,44 @@ public class Player_Cont : MonoBehaviourPun
         S2Atk_Stay = false;
         EAtk_Enter = false;
         EAtk_Stay= false;
+    }
+    void StayFlSet()
+    {
+        if (NAtk_Stay) NAtk_StayFl++;
+        else NAtk_StayFl = 0;
+        if (S1Atk_Stay) S1Atk_StayFl++;
+        else S1Atk_StayFl = 0;
+        if (S2Atk_Stay) S2Atk_StayFl++;
+        else S2Atk_StayFl = 0;
+        if (EAtk_Stay) EAtk_StayFl++;
+        else EAtk_StayFl = 0;
+    }
+    void ExitSet()
+    {
+        if (NAtk_Stay) NAtk_ExitT = true;
+        else
+        {
+            NAtk_Exit = NAtk_ExitT;
+            NAtk_ExitT = false;
+        }
+        if (S1Atk_Stay) S1Atk_ExitT = true;
+        else
+        {
+            S1Atk_Exit = S1Atk_ExitT;
+            S1Atk_ExitT = false;
+        }
+        if (S2Atk_Stay) S2Atk_ExitT = true;
+        else
+        {
+            S2Atk_Exit = S2Atk_ExitT;
+            S2Atk_ExitT = false;
+        }
+        if (EAtk_Stay) EAtk_ExitT = true;
+        else
+        {
+            EAtk_Exit = EAtk_ExitT;
+            EAtk_ExitT = false;
+        }
     }
     void PICont()
     {

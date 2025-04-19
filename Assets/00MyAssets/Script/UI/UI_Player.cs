@@ -168,11 +168,12 @@ public class UI_Player : UI_State
                         SliderCol = Color.green;
                         for (int j = 0; j < BranchInfo.Ifs.Length; j++)
                         {
-                            if (BranchInfo.Ifs[j] == Enum_AtkIf.攻撃単入力)
+                            if (BranchInfo.Ifs[j] == Enum_AtkIf.攻撃単入力 || BranchInfo.Ifs[j] == Enum_AtkIf.攻撃入力離)
                             {
                                 SliderCol = Color.yellow;
                                 break;
                             }
+
                             if (BranchInfo.Ifs[j] == Enum_AtkIf.攻撃長入力)
                             {
                                 SliderCol = Color.magenta;

@@ -85,8 +85,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 2049415607464157120}
+  ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -129,7 +128,7 @@ MonoBehaviour:
   MPRegene: 0
   SPRegene: 10
   MBreak: 25
-  BreakTime: 1500
+  BreakTime: 300
   Atk: 999999
   Def: 33332
   HP: 0
@@ -227,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rig: {fileID: 6544934709698599726}
+  GravityPer: 0
   StreamTime: 0.1
 --- !u!1 &4063638381043877865
 GameObject:
